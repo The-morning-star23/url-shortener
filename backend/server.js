@@ -35,20 +35,6 @@ app.get('/api/urls', async (req, res) => {
   }
 });
 
-
-// Shorten a URL (existing code)
-// POST /api/shorten
-app.post('/api/shorten', async (req, res) => {
-  // ... (keep all existing code for this route)
-});
-
-
-// Redirect to the original URL (existing code)
-// GET /:shortcode
-app.get('/:shortCode', async (req, res) => {
-  // ... (keep all existing code for this route)
-});
-
 // Shorten a URL
 // POST /api/shorten
 app.post('/api/shorten', async (req, res) => {
