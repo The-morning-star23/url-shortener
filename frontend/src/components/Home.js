@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
 
-// This is the code we previously had in App.js
 function Home() {
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const API_URL = process.env.REACT_APP_API_URL;
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,8 +18,8 @@ function Home() {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/shorten', { originalUrl });
-      const fullShortUrl = `http://localhost:5000/${response.data.shortCode}`;
+      const response = await axios.post(`${API_URL}/api/shorten`, { originalUrl });
+      const fullShortUrl = `${API_URL}/${response.data.shortCode}`;
       setShortUrl(fullShortUrl);
     } catch (err) {
       setError('Failed to shorten URL. Please try again.');

@@ -8,11 +8,13 @@ function Admin() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchUrls = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:5000/api/urls');
+        const response = await axios.get(`${API_URL}/api/urls`);
         setUrls(response.data);
       } catch (err) {
         setError('Failed to fetch URL data.');
@@ -23,7 +25,7 @@ function Admin() {
     };
 
     fetchUrls();
-  }, []);
+  }, [API_URL]);
 
   if (loading) return <p>Loading data...</p>;
   if (error) return <p className="error">{error}</p>;
@@ -49,7 +51,7 @@ function Admin() {
                 </a>
               </td>
               <td>
-                <a href={`http://localhost:5000/${url.shortCode}`} target="_blank" rel="noopener noreferrer">
+                <a href={`${API_URL}/${url.shortCode}`} target="_blank" rel="noopener noreferrer">
                   {`/${url.shortCode}`}
                 </a>
               </td>
